@@ -44,7 +44,7 @@ def process_one(pipe12):
     counter = event(pid, counter)
     counter = event(pid, counter)
     counter = recv_message(pipe12, pid, counter)
-    sleep(1)  # Sleep for sort outputs
+    sleep(1)
     print('Process a {}'.format(counter))
 
 
@@ -59,7 +59,7 @@ def process_two(pipe21, pipe23):
     counter = send_message(pipe21, pid, counter)
     counter = send_message(pipe23, pid, counter)
     counter = send_message(pipe23, pid, counter)
-    sleep(2)  # Sleep for sort outputs
+    sleep(2)
     print('Process b {}'.format(counter))
 
 
@@ -70,7 +70,7 @@ def process_three(pipe32):
     counter = recv_message(pipe32, pid, counter)
     counter = event(pid, counter)
     counter = recv_message(pipe32, pid, counter)
-    sleep(3)  # Sleep for sort outputs
+    sleep(3)
     print('Process c {}'.format(counter))
 
 
