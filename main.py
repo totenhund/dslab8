@@ -34,6 +34,7 @@ def send_message(pipe, pid, counter):
 def recv_message(pipe, pid, counter):
     message, timestamp = pipe.recv()
     counter = calc_recv_timestamp(timestamp, counter)
+    counter[pid] += 1
     print('Message received at ' + str(pid) + local_time(counter))
     return counter
 
@@ -85,12 +86,9 @@ if __name__ == '__main__':
     twoandthree, threeandtwo = Pipe()
 
     # init processes
-    process1 = Process(target=process_one,
-                       args=(oneandtwo,))
-    process2 = Process(target=process_two,
-                       args=(twoandone, twoandthree))
-    process3 = Process(target=process_three,
-                       args=(threeandtwo,))
+    process1 = Process(target=process_one, args=(oneandtwo,))
+    process2 = Process(target=process_two, args=(twoandone, twoandthree))
+    process3 = Process(target=process_three, args=(threeandtwo,))
 
     # start processes
     process1.start()
